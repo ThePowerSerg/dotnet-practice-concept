@@ -13,7 +13,7 @@ namespace DotnetPractice.Models.Classes
         private readonly int _pageCount = pageCount;
 
         // methods
-        public string GetDiscription()
+        public string GetDescription()
         {
             return $"Book name: {_name} - Author: {_author} - Page count: {_pageCount}";
         }

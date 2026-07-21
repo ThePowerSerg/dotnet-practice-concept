@@ -61,4 +61,4 @@ using DotnetPractice.Models.Classes;
 
 var b = new Book("The Secret","Jack Canfield", 555);
 
-Console.WriteLine(b.GetDiscription());
+Console.WriteLine(b.GetDescription());
