@@ -5,17 +5,14 @@ using System.Threading.Tasks;
 
 namespace DotnetPractice.Models.Classes
 {
-    // class definition with default constructor
+    // class definition with primary constructor
     public class Book(string name, string author, int pageCount)
     {
-        private readonly string _name = name;
-        private readonly string _author = author;
-        private readonly int _pageCount = pageCount;
+        public string Name { get; set; } = name;
+        public string Author { get; set; } = author;
+        public int PageCount { get; set;} = pageCount;
 
         // methods
-        public string GetDescription()
-        {
-            return $"Book name: {_name} - Author: {_author} - Page count: {_pageCount}";
-        }
+        public string GetDescription() => $"Book name: {Name} - Author: {Author} - Page count: {PageCount}";
     }
 }
