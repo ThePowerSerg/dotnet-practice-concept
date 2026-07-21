@@ -5,18 +5,17 @@ using System.Threading.Tasks;
 
 namespace DotnetPractice.Models.Classes
 {
-    public class Book : IBook
+    // class definition with default constructor
+    public class Book(string name, string author, int pageCount)
     {
-        public string? Id { get; set; }
-        public string? Name { get; set; }
+        private readonly string _name = name;
+        private readonly string _author = author;
+        private readonly int _pageCount = pageCount;
 
-        public string DisplayName()
+        // methods
+        public string GetDiscription()
         {
-            if (Id != null)
-            {
-                return Name.ToUpper();
-            }
-            else return "";
+            return $"Book name: {_name} - Author: {_author} - Page count: {_pageCount}";
         }
     }
 }
