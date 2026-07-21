@@ -14,6 +14,8 @@
 
 // Arrays
 
+using DotnetPractice.Models.Classes;
+
 int[] vals = new int[5];
 vals[0] = 1;
 vals[1] = 2;
@@ -36,15 +38,19 @@ string[] strings = ["Apple", "Banana", "Peach"];
 
 // Lists
 
-List<string> myList = new List<string>();
+//List<string> myList = new List<string>();
 
-List<string> myListTwo = [];
+//List<string> myListTwo = [];
 
-myListTwo.Add("Audi");
-myListTwo.Add("Lucid");
-myListTwo.Add("Tesla");
+// myListTwo.Add("Audi");
+// myListTwo.Add("Lucid");
+// myListTwo.Add("Tesla");
 
-foreach(var i in myListTwo)
-{   
-    Console.WriteLine(i);
-}
+// foreach(var i in myListTwo)
+// {   
+//     Console.WriteLine(i);
+// }
+
+var b = new Book { Id = "ABC123", Name="Serg" };
+
+Console.WriteLine(b.DisplayName());
