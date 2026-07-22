@@ -1,4 +1,4 @@
-﻿// Value type variables
+﻿// ******************** Value type variables ************************
 
 // int i = 0;
 // float x = 2.0F;
@@ -12,19 +12,21 @@
 // Console.WriteLine(d2);
 // Console.WriteLine(t);
 
-// Arrays
+// ***************** Arrays ****************************
 
-int[] vals = new int[5];
-vals[0] = 1;
-vals[1] = 2;
-vals[2] = 3;
+// using DotnetPractice.Models.Classes;
 
-int[] v = [1, 2, 3];
-//Console.WriteLine(v[0]);
-//Console.WriteLine(v[1]);
-//Console.WriteLine(v[2]);
+// int[] vals = new int[5];
+// vals[0] = 1;
+// vals[1] = 2;
+// vals[2] = 3;
 
-string[] strings = ["Apple", "Banana", "Peach"];
+// int[] v = [1, 2, 3];
+// //Console.WriteLine(v[0]);
+// //Console.WriteLine(v[1]);
+// //Console.WriteLine(v[2]);
+
+// string[] strings = ["Apple", "Banana", "Peach"];
 
 //Console.WriteLine(strings[0]);
 
@@ -34,17 +36,29 @@ string[] strings = ["Apple", "Banana", "Peach"];
 // String Interpolation:
 //Console.WriteLine($"The fruit is {strings[0]}");
 
-// Lists
+// *************************** Lists *****************************
 
-List<string> myList = new List<string>();
+//List<string> myList = new List<string>();
 
-List<string> myListTwo = [];
+//List<string> myListTwo = [];
 
-myListTwo.Add("Audi");
-myListTwo.Add("Lucid");
-myListTwo.Add("Tesla");
+// myListTwo.Add("Audi");
+// myListTwo.Add("Lucid");
+// myListTwo.Add("Tesla");
 
-foreach(var i in myListTwo)
-{   
-    Console.WriteLine(i);
-}
+// foreach(var i in myListTwo)
+// {   
+//     Console.WriteLine(i);
+// }
+
+// ***************************************************
+
+// var b = new Book { Id = "ABC123", Name="Serg" };
+
+// Console.WriteLine(b.DisplayName());
+
+using DotnetPractice.Models.Classes;
+
+var b = new Book("The Secret","Jack Canfield", 555);
+
+Console.WriteLine(b.GetDescription());

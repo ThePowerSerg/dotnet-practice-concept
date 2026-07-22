@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "e4eRwFKSGh8=",
   "success": true,
   "projectFilePath": "/Users/sergioferreira/repos/dotnet-practice-concepts/DotnetPractice/DotnetPractice.csproj",
+=======
+  "dgSpecHash": "s2ZF/cRVByY=",
+  "success": true,
+  "projectFilePath": "C:\\Repos\\dotnet-practice-concept\\DotnetPractice\\DotnetPractice.csproj",
+>>>>>>> 16f1c282f1f003c916d37c381970dee1e80971bc
   "expectedPackageFiles": [],
   "logs": []
 }
