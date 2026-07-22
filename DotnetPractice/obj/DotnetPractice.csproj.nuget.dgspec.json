@@ -1,7 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
     "/Users/sergioferreira/repos/dotnet-practice-concepts/DotnetPractice/DotnetPractice.csproj": {}
   },
   "projects": {
@@ -13,30 +12,15 @@
         "projectPath": "/Users/sergioferreira/repos/dotnet-practice-concepts/DotnetPractice/DotnetPractice.csproj",
         "packagesPath": "/Users/sergioferreira/.nuget/packages/",
         "outputPath": "/Users/sergioferreira/repos/dotnet-practice-concepts/DotnetPractice/obj/",
-=======
-    "C:\\Repos\\dotnet-practice-concept\\DotnetPractice\\DotnetPractice.csproj": {}
-  },
-  "projects": {
-    "C:\\Repos\\dotnet-practice-concept\\DotnetPractice\\DotnetPractice.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Repos\\dotnet-practice-concept\\DotnetPractice\\DotnetPractice.csproj",
-        "projectName": "DotnetPractice",
-        "projectPath": "C:\\Repos\\dotnet-practice-concept\\DotnetPractice\\DotnetPractice.csproj",
-        "packagesPath": "C:\\Users\\sergi\\.nuget\\packages\\",
-        "outputPath": "C:\\Repos\\dotnet-practice-concept\\DotnetPractice\\obj\\",
->>>>>>> 16f1c282f1f003c916d37c381970dee1e80971bc
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\sergi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/sergioferreira/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -78,7 +62,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.302/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.301/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",

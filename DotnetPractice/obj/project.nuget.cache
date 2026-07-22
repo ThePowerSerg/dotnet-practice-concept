@@ -1,14 +1,18 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "e4eRwFKSGh8=",
   "success": true,
   "projectFilePath": "/Users/sergioferreira/repos/dotnet-practice-concepts/DotnetPractice/DotnetPractice.csproj",
-=======
-  "dgSpecHash": "s2ZF/cRVByY=",
-  "success": true,
-  "projectFilePath": "C:\\Repos\\dotnet-practice-concept\\DotnetPractice\\DotnetPractice.csproj",
->>>>>>> 16f1c282f1f003c916d37c381970dee1e80971bc
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "message": "Problem reading the cache file /Users/sergioferreira/repos/dotnet-practice-concepts/DotnetPractice/obj/project.nuget.cache : '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0.",
+      "projectPath": "/Users/sergioferreira/repos/dotnet-practice-concepts/DotnetPractice/DotnetPractice.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/sergioferreira/repos/dotnet-practice-concepts/DotnetPractice/DotnetPractice.csproj",
+      "targetGraphs": []
+    }
+  ]
 }
