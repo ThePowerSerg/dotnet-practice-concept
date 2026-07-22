@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/sergioferreira/repos/DotnetPractice/DotnetPractice.csproj",
+      "projectUniqueName": "/Users/sergioferreira/repos/dotnet-practice-concepts/DotnetPractice/DotnetPractice.csproj",
       "projectName": "DotnetPractice",
-      "projectPath": "/Users/sergioferreira/repos/DotnetPractice/DotnetPractice.csproj",
+      "projectPath": "/Users/sergioferreira/repos/dotnet-practice-concepts/DotnetPractice/DotnetPractice.csproj",
       "packagesPath": "/Users/sergioferreira/.nuget/packages/",
-      "outputPath": "/Users/sergioferreira/repos/DotnetPractice/obj/",
+      "outputPath": "/Users/sergioferreira/repos/dotnet-practice-concepts/DotnetPractice/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/sergioferreira/.nuget/NuGet/NuGet.Config"
