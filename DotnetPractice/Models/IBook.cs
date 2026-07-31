@@ -1,5 +1,5 @@
 
-// da set of method/property signatures with no implementation and no state of its own.
+// set of method/property signatures with no implementation and no state of its own.
 interface IBook
 {
     string Name { get; set; }
