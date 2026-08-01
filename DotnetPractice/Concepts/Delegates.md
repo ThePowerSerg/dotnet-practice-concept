@@ -289,3 +289,7 @@ Func<int> getRandomNumber = () => new Random().Next();
 ```
 
 So counting the type parameters: if there are **N** type parameters total, the first **N-1** are inputs, and the **last one** is always the return type. With only one type parameter (like `Func<int>`), that means zero inputs and just a return value.
+
+
+Delegates: Function pointers — you assign a method to a delegate as long as the method's signature and return type match. Delegates are multicast (can hold multiple methods) and can be invoked directly by anyone holding a reference. .NET provides built-in delegates (Func, Action, Predicate) used heavily in LINQ.
+Events: Delegates with restricted access — outside code can only subscribe/unsubscribe (+=/-=), never invoke or overwrite directly; only the declaring class can raise the event. Most commonly seen (as a consumer) in desktop UI frameworks like WinForms/WPF.
