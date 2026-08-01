@@ -42,14 +42,12 @@ MathOperation multiplyNumbers = (x, y) => x * y;
 
 // Console.WriteLine(multiplyNumbers(10, 5));
 
-
-List<Book> books =
-[
-    new Book(1, "Harry Potter", "JK Rowling", 555),
-    new Book(2, "The Hobbit", "J.R.R. Tolkien", 310),
-    new Book(3, "Dune", "Frank Herbert", 412)
+List<Book> books = [
+     new Book(1, "Harry Potter", "JK Rowling", 555),
+     new Book(2, "The Hobbit", "J.R.R. Tolkien", 310),
+     new Book(3, "Dune", "Frank Herbert", 412)
 ];
 
 // Retrieve a specific book by Id using LINQ
-var filteredBook = books.FirstOrDefault(book => book.Id == 0);
-Console.WriteLine(filteredBook?.Name);
+var filteredBook = books.FirstOrDefault(b => b.Id == 0);
+Console.WriteLine(filteredBook?.Name ?? "defaul");
