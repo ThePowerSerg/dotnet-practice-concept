@@ -1,6 +1,4 @@
-﻿using System.Data.Common;
-using System.Security.Cryptography.X509Certificates;
-using DotnetPractice.Models;
+﻿using DotnetPractice.Models;
 
 // **************** Book **************************
 
@@ -49,5 +47,24 @@ List<Book> books = [
 ];
 
 // Retrieve a specific book by Id using LINQ
-var filteredBook = books.FirstOrDefault(b => b.Id == 0);
-Console.WriteLine(filteredBook?.Name ?? "defaul");
+var filteredBook = books.FirstOrDefault(book => book.Id == 1);
+//Console.WriteLine(filteredBook?.Name ?? "No books found with supplied ID");
+
+var bookNameCheck = filteredBook?.Name.Contains("data");
+
+var getId = books.Find(b => b.Id == 3);
+
+
+//Console.WriteLine(bookNameCheck);
+
+// create the Person object
+var p1 = new Person("Alex", 30, "Boston");
+
+Console.WriteLine(p1);
+
+// Immutable - cannot be changed
+// p1.Name = "serg";
+
+var movedP1 = p1 with {City = "Norwell"};
+
+Console.WriteLine(movedP1);
