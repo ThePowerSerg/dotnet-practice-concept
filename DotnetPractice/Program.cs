@@ -68,3 +68,10 @@ Console.WriteLine(p1);
 var movedP1 = p1 with {City = "Norwell"};
 
 Console.WriteLine(movedP1);
+
+var employee = (Id: 101, Role: "Manager", Dept: "HR");
+
+// Deconstructing into separate variables
+var (id, role, department) = employee;
+
+Console.WriteLine(id);
