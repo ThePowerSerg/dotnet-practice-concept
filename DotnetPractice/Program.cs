@@ -79,14 +79,36 @@ Console.WriteLine(id);
 // -------------------------------------------------------
 List<int> numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-foreach (var number in numbers)
-{
-     Console.WriteLine(number);
-}
 
 IEnumerable<int> evens = numbers.Where(x => x > 5);
 
 foreach (int x in evens)
 {
     Console.WriteLine(x);
+}
+
+// OrderBy example - sorts books by page count, ascending
+IEnumerable<Book> booksByPages = books.OrderBy(book => book.PageCount);
+
+foreach (var book in booksByPages)
+{
+    Console.WriteLine($"{book.Name} - {book.PageCount} pages");
+}
+
+// OrderByDescending example - sorts numbers largest to smallest
+// IEnumerable<int> numbersDescending = numbers.OrderByDescending(x => x);
+
+// foreach (int x in numbersDescending)
+// {
+//     Console.WriteLine(x);
+// }
+
+// Chaining OrderBy with ThenBy - sort by author, then by name within each author
+IEnumerable<Book> booksByAuthorThenName = books
+    .OrderBy(book => book.Author)
+    .ThenBy(book => book.Name);
+
+foreach (var book in booksByAuthorThenName)
+{
+    Console.WriteLine($"{book.Author}: {book.Name}");
 }
