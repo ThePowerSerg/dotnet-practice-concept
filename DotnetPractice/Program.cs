@@ -75,3 +75,18 @@ var employee = (Id: 101, Role: "Manager", Dept: "HR");
 var (id, role, department) = employee;
 
 Console.WriteLine(id);
+
+// -------------------------------------------------------
+List<int> numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+foreach (var number in numbers)
+{
+     Console.WriteLine(number);
+}
+
+IEnumerable<int> evens = numbers.Where(x => x > 5);
+
+foreach (int x in evens)
+{
+    Console.WriteLine(x);
+}
