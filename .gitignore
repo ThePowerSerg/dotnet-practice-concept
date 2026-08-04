@@ -481,3 +481,18 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 PracticeAPI/store.db
+*.dll
+*.pdb
+*.cache
+DotnetPractice/obj/Debug/net10.0/DotnetPractice.csproj.FileListAbsolute.txt
+DotnetPractice/obj/Debug/net10.0/refint/DotnetPractice.dll
+DotnetPractice/obj/Debug/net10.0/ref/DotnetPractice.dll
+DotnetPractice/obj/Debug/net10.0/DotnetPractice.csproj.CoreCompileInputs.cache
+DotnetPractice/obj/Debug/net10.0/DotnetPractice.csproj.FileListAbsolute.txt
+DotnetPractice/obj/Debug/net10.0/DotnetPractice.dll
+DotnetPractice/obj/Debug/net10.0/DotnetPractice.genruntimeconfig.cache
+DotnetPractice/obj/Debug/net10.0/DotnetPractice.pdb
+DotnetPractice/obj/Debug/net10.0/DotnetPractice.sourcelink.json
+DotnetPractice/obj/Debug/net10.0/ref/DotnetPractice.dll
+DotnetPractice/bin/Debug/net10.0/DotnetPractice.dll
+DotnetPractice/bin/Debug/net10.0/DotnetPractice.pdb
