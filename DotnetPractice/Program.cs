@@ -79,7 +79,6 @@ Console.WriteLine(id);
 // -------------------------------------------------------
 List<int> numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-
 IEnumerable<int> evens = numbers.Where(x => x > 5);
 
 foreach (int x in evens)
@@ -111,4 +110,26 @@ IEnumerable<Book> booksByAuthorThenName = books
 foreach (var book in booksByAuthorThenName)
 {
     Console.WriteLine($"{book.Author}: {book.Name}");
+}
+
+// -------------------------------------------------------
+// IQueryable example
+// books is a List<Book>, so AsQueryable() wraps it in an IQueryable<Book>.
+// There's no external provider here (no database), so this still runs in-memory,
+// but it demonstrates the shape IQueryable has - the same LINQ methods build up
+// an expression tree instead of a delegate.
+IQueryable<Book> queryableBooks = books.AsQueryable();
+
+IQueryable<Book> longBooksQuery = queryableBooks
+    .Where(book => book.PageCount > 400)
+    .OrderBy(book => book.PageCount);
+
+// Nothing has executed yet - longBooksQuery.Expression holds the query as data
+Console.WriteLine(longBooksQuery.Expression);
+
+// Enumerating is what triggers execution (translation + run, for a real provider
+// like EF Core; a simple in-memory walk here since there's no provider to translate to)
+foreach (var book in longBooksQuery)
+{
+    Console.WriteLine($"{book.Name} - {book.PageCount} pages");
 }
