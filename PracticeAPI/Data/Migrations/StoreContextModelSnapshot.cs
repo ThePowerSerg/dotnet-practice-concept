@@ -8,7 +8,7 @@ using PracticeAPI.Data;
 
 namespace PracticeAPI.Data.Migrations
 {
-    [DbContext(typeof(StoreContext))]
+    [DbContext(typeof(StoreService))]
     partial class StoreContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

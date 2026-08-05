@@ -9,7 +9,7 @@ using PracticeAPI.Data;
 
 namespace PracticeAPI.Data.Migrations
 {
-    [DbContext(typeof(StoreContext))]
+    [DbContext(typeof(StoreService))]
     [Migration("20260804131206_InitialCreate")]
     partial class InitialCreate
     {

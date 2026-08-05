@@ -9,13 +9,13 @@ namespace PracticeAPI.Data
         {
             using var scope = app.Services.CreateScope();
 
-            var context = scope.ServiceProvider.GetService<StoreContext>() 
+            var context = scope.ServiceProvider.GetService<StoreService>() 
                 ?? throw new InvalidOperationException("Failed to retrieve store context");
 
             SeedData(context);
         }
 
-        private static void SeedData(StoreContext context)
+        private static void SeedData(StoreService context)
         {
             // check for pending migrations
             context.Database.Migrate();

@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 // StoreContext service
-builder.Services.AddDbContext<StoreContext>(opt =>
+builder.Services.AddDbContext<StoreService>(opt =>
 {
     opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 }
@@ -16,7 +16,7 @@ builder.Services.AddDbContext<StoreContext>(opt =>
 
 // FakeStoreService - in-memory stand-in for StoreContext, registered as scoped
 // (one instance created per HTTP request, same lifetime AddDbContext uses by default)
-builder.Services.AddScoped<FakeStoreService>();
+//builder.Services.AddScoped<IFakeStoreService, FakeStoreService>();
 
 var app = builder.Build();
 
