@@ -14,6 +14,10 @@ builder.Services.AddDbContext<StoreContext>(opt =>
 }
 );
 
+// FakeStoreService - in-memory stand-in for StoreContext, registered as scoped
+// (one instance created per HTTP request, same lifetime AddDbContext uses by default)
+builder.Services.AddScoped<FakeStoreService>();
+
 var app = builder.Build();
 
 app.MapControllers();
