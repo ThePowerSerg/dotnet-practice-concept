@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PracticeAPI.Entities;
 
-namespace PracticeAPI.Data
+namespace PracticeAPI.Services
 {
     // DBContext is the gateway between the database and the app entities
     public class StoreService (DbContextOptions options) : DbContext(options)
