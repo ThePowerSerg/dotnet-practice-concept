@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace PracticeAPI.Controllers;
+namespace ReviewAPI.Controllers;
 
 [ApiController]
 [Route("[controller]")]

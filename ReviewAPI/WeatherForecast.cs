@@ -1,4 +1,4 @@
-namespace PracticeAPI;
+namespace ReviewAPI;
 
 public class WeatherForecast
 {
