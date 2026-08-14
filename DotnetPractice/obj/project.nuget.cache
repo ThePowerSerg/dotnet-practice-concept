@@ -4,5 +4,15 @@
   "success": true,
   "projectFilePath": "C:\\Repos\\dotnet-practice-concept\\DotnetPractice\\DotnetPractice.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "message": "Problem reading the cache file C:\\Repos\\dotnet-practice-concept\\DotnetPractice\\obj\\project.nuget.cache : '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0.",
+      "projectPath": "C:\\Repos\\dotnet-practice-concept\\DotnetPractice\\DotnetPractice.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Repos\\dotnet-practice-concept\\DotnetPractice\\DotnetPractice.csproj",
+      "targetGraphs": []
+    }
+  ]
 }
