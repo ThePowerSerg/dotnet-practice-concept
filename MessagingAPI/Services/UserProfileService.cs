@@ -1,3 +1,4 @@
+using MessagingAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using ReviewAPI.Data;
 using ReviewAPI.Dtos;
@@ -36,5 +37,19 @@ namespace ReviewAPI.Services
 
             })
             .FirstOrDefaultAsync();
+
+        public UserProfileDto AddUserProfile(UserProfileDto userProfile)
+        {
+            var profile = new UserProfile
+            {
+                UserName = userProfile.UserName,
+                Email = userProfile.Email,
+                PhoneNumber = userProfile.PhoneNumber
+            };
+            context.UserProfiles.Add(profile);
+            context.SaveChanges();
+
+            return userProfile;
+        }
     }
 }

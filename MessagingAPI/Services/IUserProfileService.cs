@@ -6,8 +6,8 @@ namespace ReviewAPI.Services
     {
         // Get complete list
         Task<IEnumerable<UserProfileDto>> GetUserProfilesAsync();
-
         // Get specific user profile by id
         Task<UserProfileDto?> GetUserProfileByIdAsync(int id);
+        UserProfileDto AddUserProfile(UserProfileDto userProfile);
     }
 }
