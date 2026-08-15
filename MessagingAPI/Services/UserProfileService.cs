@@ -44,7 +44,8 @@ namespace ReviewAPI.Services
             {
                 UserName = userProfile.UserName,
                 Email = userProfile.Email,
-                PhoneNumber = userProfile.PhoneNumber
+                PhoneNumber = userProfile.PhoneNumber,
+                Country = userProfile.Country
             };
             context.UserProfiles.Add(profile);
             context.SaveChanges();
