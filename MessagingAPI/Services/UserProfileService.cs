@@ -38,7 +38,7 @@ namespace ReviewAPI.Services
             })
             .FirstOrDefaultAsync();
 
-        public UserProfileDto AddUserProfile(UserProfileDto userProfile)
+        public UserProfileDto AddUserProfile(CreateUserProfileDto userProfile)
         {
             var profile = new UserProfile
             {
@@ -50,7 +50,14 @@ namespace ReviewAPI.Services
             context.UserProfiles.Add(profile);
             context.SaveChanges();
 
-            return userProfile;
+            return new UserProfileDto
+            {
+                Id = profile.Id,
+                UserName = profile.UserName,
+                Email = profile.Email,
+                PhoneNumber = profile.PhoneNumber,
+                Country = profile.Country
+            };
         }
     }
 }
