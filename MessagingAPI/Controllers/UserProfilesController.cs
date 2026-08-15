@@ -30,5 +30,21 @@ namespace ReviewAPI.Controllers
 
             return Ok(userProfile);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<UserProfileDto>> Post([FromBody] CreateUserProfileDto userProfile)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var profile = profileService.CreateUserProfileAsync(userProfile);
+
+            return CreatedAtAction(
+                nameof(GetById), 
+                new {id = profile.Id }, 
+                profile);
+        }
     }
 }

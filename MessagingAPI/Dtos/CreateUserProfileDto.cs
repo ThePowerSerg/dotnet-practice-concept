@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 /// <summary>
 /// Represents the data required to create a new user profile.
 /// </summary>
@@ -11,6 +13,8 @@ namespace ReviewAPI.Dtos
 {
     public class CreateUserProfileDto
     {
+        [Required(ErrorMessage = "Username is required.")]
+        [MinLength(3, ErrorMessage = "Username must be at least 3 characters.")]
         public required string UserName { get; init; }
         public string? Email { get; init; }
         public string? PhoneNumber { get; init; }

@@ -30,16 +30,21 @@ namespace ReviewAPI.Services
             .Select(userProfile => new UserProfileDto
             {
                 Id = userProfile.Id,
-                    UserName = userProfile.UserName,
-                    Email = userProfile.Email,
-                    PhoneNumber = userProfile.PhoneNumber,
-                    Country = userProfile.Country
+                UserName = userProfile.UserName,
+                Email = userProfile.Email,
+                PhoneNumber = userProfile.PhoneNumber,
+                Country = userProfile.Country
 
             })
             .FirstOrDefaultAsync();
 
-        public UserProfileDto AddUserProfile(CreateUserProfileDto userProfile)
+        public async Task<UserProfileDto> CreateUserProfileAsync(CreateUserProfileDto userProfile)
         {
+            if (string.IsNullOrWhiteSpace(userProfile.UserName))
+            {
+                throw new ArgumentException("Username is required.", nameof(userProfile));
+            }
+
             var profile = new UserProfile
             {
                 UserName = userProfile.UserName,
@@ -47,8 +52,10 @@ namespace ReviewAPI.Services
                 PhoneNumber = userProfile.PhoneNumber,
                 Country = userProfile.Country
             };
+
             context.UserProfiles.Add(profile);
-            context.SaveChanges();
+
+            await context.SaveChangesAsync();
 
             return new UserProfileDto
             {
