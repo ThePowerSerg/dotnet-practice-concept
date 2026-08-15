@@ -1,6 +1,7 @@
 using MessagingAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using ReviewAPI.Data;
+using ReviewAPI.Repositories;
 using ReviewAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,7 +17,8 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-// Register the interface and its implementation
+// Register application services and data repositories.
+builder.Services.AddScoped<IUserProfileRepository, UserProfileRepository>();
 builder.Services.AddScoped<IUserProfileService, UserProfileService>();
 
 var app = builder.Build();
