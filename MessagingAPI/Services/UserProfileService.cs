@@ -1,42 +1,25 @@
 using MessagingAPI.Models;
-using Microsoft.EntityFrameworkCore;
-using ReviewAPI.Data;
 using ReviewAPI.Dtos;
+using ReviewAPI.Repositories;
 
 namespace ReviewAPI.Services
 {
-    public class UserProfileService(AppDbContext context) : IUserProfileService
+    // with the introduction of the repository, the service communicates with the repository instead of DbContext directly
+    public class UserProfileService(IUserProfileRepository repository) : IUserProfileService
     {
-        // Get a list of user profiles from the database and pass them as a list to the DTO
+        // Get a list of user profiles from the repository and map them to DTOs.
         public async Task<IEnumerable<UserProfileDto>> GetUserProfilesAsync()
         {
-            return await context.UserProfiles
-                .AsNoTracking()
-                .Select(userProfile => new UserProfileDto
-                {
-                    Id = userProfile.Id,
-                    UserName = userProfile.UserName,
-                    Email = userProfile.Email,
-                    PhoneNumber = userProfile.PhoneNumber,
-                    Country = userProfile.Country
-                })
-                .ToListAsync();
+            var userProfiles = await repository.GetUserProfilesAsync();
+            return userProfiles.Select(ToDto);
         }
-        // Get the user profile by Id from the database and pass it to the DTO
-        public Task<UserProfileDto?> GetUserProfileByIdAsync(int id) =>
-            context.UserProfiles
-            .AsNoTracking()
-            .Where(userProfile => userProfile.Id == id)
-            .Select(userProfile => new UserProfileDto
-            {
-                Id = userProfile.Id,
-                UserName = userProfile.UserName,
-                Email = userProfile.Email,
-                PhoneNumber = userProfile.PhoneNumber,
-                Country = userProfile.Country
 
-            })
-            .FirstOrDefaultAsync();
+        // Get the user profile by Id from the repository and map it to a DTO.
+        public async Task<UserProfileDto?> GetUserProfileByIdAsync(int id)
+        {
+            var userProfile = await repository.GetUserProfileByIdAsync(id);
+            return userProfile is null ? null : ToDto(userProfile);
+        }
 
         public async Task<UserProfileDto> CreateUserProfileAsync(CreateUserProfileDto userProfile)
         {
@@ -53,17 +36,20 @@ namespace ReviewAPI.Services
                 Country = userProfile.Country
             };
 
-            context.UserProfiles.Add(profile);
+            var createdProfile = await repository.CreateUserProfileAsync(profile);
+            return ToDto(createdProfile);
+        }
 
-            await context.SaveChangesAsync();
-
+        // maps the UserProfile (from database) to the Dto which is used by the controller
+        private static UserProfileDto ToDto(UserProfile userProfile)
+        {
             return new UserProfileDto
             {
-                Id = profile.Id,
-                UserName = profile.UserName,
-                Email = profile.Email,
-                PhoneNumber = profile.PhoneNumber,
-                Country = profile.Country
+                Id = userProfile.Id,
+                UserName = userProfile.UserName,
+                Email = userProfile.Email,
+                PhoneNumber = userProfile.PhoneNumber,
+                Country = userProfile.Country
             };
         }
     }

@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1080" viewBox="0 0 1600 1080" role="img" aria-labelledby="title description">
+  <title id="title">User profile API architecture and request flow</title>
+  <desc id="description">A detailed flow from HTTP request through DTO, controller, service, repository, DbContext and PostgreSQL, then back as a 201 Created response. It also shows dependency injection and unit testing with a mocked repository.</desc>
+  <defs>
+    <style>
+      .title { font: 700 32px Arial, sans-serif; fill: #102a43; }
+      .subtitle { font: 16px Arial, sans-serif; fill: #486581; }
+      .section { font: 700 16px Arial, sans-serif; fill: #243b53; letter-spacing: .6px; }
+      .box-title { font: 700 18px Arial, sans-serif; fill: #102a43; }
+      .box-text { font: 14px Arial, sans-serif; fill: #334e68; }
+      .small { font: 12px Arial, sans-serif; fill: #486581; }
+      .label { font: 700 12px Arial, sans-serif; fill: #243b53; }
+      .request { fill: #e6f6ff; stroke: #1687c5; }
+      .service { fill: #f3e8ff; stroke: #8b5cf6; }
+      .data { fill: #e8f8ef; stroke: #22a06b; }
+      .response { fill: #fff3d6; stroke: #d98f00; }
+      .testing { fill: #fff0f3; stroke: #d84a70; }
+      .box { stroke-width: 2; rx: 14; }
+      .solid { fill: none; stroke: #486581; stroke-width: 2.5; marker-end: url(#arrow); }
+      .return { fill: none; stroke: #d98f00; stroke-width: 2.5; marker-end: url(#arrow-orange); }
+      .dependency { fill: none; stroke: #7b8794; stroke-width: 2; stroke-dasharray: 7 6; marker-end: url(#arrow-gray); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,3 L0,6 Z" fill="#486581"/></marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,3 L0,6 Z" fill="#d98f00"/></marker>
+    <marker id="arrow-gray" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,3 L0,6 Z" fill="#7b8794"/></marker>
+  </defs>
+
+  <rect width="1600" height="1080" fill="#f8fbff"/>
+  <text x="70" y="64" class="title">User Profile API — Architecture, Dependencies, and POST Flow</text>
+  <text x="70" y="92" class="subtitle">POST /api/userprofiles creates a profile, persists an entity, and returns a 201 Created response.</text>
+
+  <text x="70" y="142" class="section">REQUEST AND PERSISTENCE FLOW</text>
+
+  <!-- Request chain -->
+  <rect x="70" y="175" width="205" height="170" class="box request"/>
+  <text x="92" y="207" class="box-title">HTTP client</text>
+  <text x="92" y="236" class="box-text">POST /api/userprofiles</text>
+  <text x="92" y="260" class="box-text">Content-Type: application/json</text>
+  <text x="92" y="292" class="small">{ userName, email,</text>
+  <text x="92" y="310" class="small">  phoneNumber, country }</text>
+
+  <rect x="345" y="175" width="230" height="170" class="box request"/>
+  <text x="367" y="207" class="box-title">CreateUserProfileDto</text>
+  <text x="367" y="236" class="box-text">API request contract</text>
+  <text x="367" y="264" class="small">• excludes database Id</text>
+  <text x="367" y="284" class="small">• [Required] UserName</text>
+  <text x="367" y="304" class="small">• [MinLength(3)]</text>
+
+  <rect x="645" y="175" width="235" height="170" class="box request"/>
+  <text x="667" y="207" class="box-title">UserProfilesController</text>
+  <text x="667" y="236" class="box-text">[ApiController] + [HttpPost]</text>
+  <text x="667" y="264" class="small">• model binds JSON</text>
+  <text x="667" y="284" class="small">• automatic 400 on invalid DTO</text>
+  <text x="667" y="304" class="small">• HTTP response responsibility</text>
+
+  <rect x="950" y="175" width="245" height="170" class="box service"/>
+  <text x="972" y="207" class="box-title">UserProfileService</text>
+  <text x="972" y="236" class="box-text">Application logic + mapping</text>
+  <text x="972" y="264" class="small">• defensive username check</text>
+  <text x="972" y="284" class="small">• CreateUserProfileDto → UserProfile</text>
+  <text x="972" y="304" class="small">• UserProfile → UserProfileDto</text>
+
+  <rect x="1265" y="175" width="255" height="170" class="box data"/>
+  <text x="1287" y="207" class="box-title">IUserProfileRepository</text>
+  <text x="1287" y="236" class="box-text">Data-access abstraction</text>
+  <text x="1287" y="264" class="small">• GetUserProfilesAsync()</text>
+  <text x="1287" y="284" class="small">• GetUserProfileByIdAsync()</text>
+  <text x="1287" y="304" class="small">• CreateUserProfileAsync()</text>
+
+  <path d="M275 260 H345" class="solid"/>
+  <path d="M575 260 H645" class="solid"/>
+  <path d="M880 260 H950" class="solid"/>
+  <path d="M1195 260 H1265" class="solid"/>
+  <text x="286" y="248" class="label">JSON → object</text>
+  <text x="588" y="248" class="label">validated input</text>
+  <text x="887" y="248" class="label">service call</text>
+  <text x="1205" y="248" class="label">entity</text>
+
+  <!-- Repository / DB chain -->
+  <rect x="1265" y="425" width="255" height="155" class="box data"/>
+  <text x="1287" y="457" class="box-title">UserProfileRepository</text>
+  <text x="1287" y="486" class="box-text">EF Core implementation</text>
+  <text x="1287" y="514" class="small">• Add(entity)</text>
+  <text x="1287" y="534" class="small">• SaveChangesAsync()</text>
+  <text x="1287" y="554" class="small">• AsNoTracking() reads</text>
+
+  <rect x="950" y="425" width="245" height="155" class="box data"/>
+  <text x="972" y="457" class="box-title">AppDbContext</text>
+  <text x="972" y="486" class="box-text">EF Core unit of work</text>
+  <text x="972" y="514" class="small">DbSet&lt;UserProfile&gt;</text>
+  <text x="972" y="534" class="small">tracks inserts and changes</text>
+
+  <rect x="645" y="425" width="235" height="155" class="box data"/>
+  <text x="667" y="457" class="box-title">PostgreSQL database</text>
+  <text x="667" y="486" class="box-text">UserProfiles table</text>
+  <text x="667" y="514" class="small">Id generated on insert</text>
+  <text x="667" y="534" class="small">persists UserProfile entity</text>
+
+  <path d="M1392 345 V425" class="solid"/>
+  <path d="M1265 502 H1195" class="solid"/>
+  <path d="M950 502 H880" class="solid"/>
+  <text x="1403" y="390" class="label">implements</text>
+  <text x="1205" y="490" class="label">uses</text>
+  <text x="886" y="490" class="label">SQL</text>
+
+  <!-- Response flow -->
+  <text x="70" y="650" class="section">SUCCESS RESPONSE FLOW</text>
+  <rect x="70" y="685" width="260" height="165" class="box response"/>
+  <text x="92" y="717" class="box-title">Database-generated entity</text>
+  <text x="92" y="746" class="box-text">UserProfile</text>
+  <text x="92" y="774" class="small">Id is now populated after save</text>
+  <text x="92" y="794" class="small">returned to service via repository</text>
+
+  <rect x="435" y="685" width="250" height="165" class="box response"/>
+  <text x="457" y="717" class="box-title">UserProfileDto</text>
+  <text x="457" y="746" class="box-text">API response contract</text>
+  <text x="457" y="774" class="small">Id, UserName, Email,</text>
+  <text x="457" y="794" class="small">PhoneNumber, Country</text>
+
+  <rect x="790" y="685" width="295" height="165" class="box response"/>
+  <text x="812" y="717" class="box-title">CreatedAtAction(GetById)</text>
+  <text x="812" y="746" class="box-text">Controller builds HTTP response</text>
+  <text x="812" y="774" class="small">201 Created</text>
+  <text x="812" y="794" class="small">Location: /api/UserProfiles/{id}</text>
+
+  <rect x="1190" y="685" width="330" height="165" class="box response"/>
+  <text x="1212" y="717" class="box-title">HTTP response JSON</text>
+  <text x="1212" y="746" class="box-text">Client receives saved profile</text>
+  <text x="1212" y="774" class="small">status 201 + Location header</text>
+  <text x="1212" y="794" class="small">body is serialized UserProfileDto</text>
+
+  <path d="M330 767 H435" class="return"/>
+  <path d="M685 767 H790" class="return"/>
+  <path d="M1085 767 H1190" class="return"/>
+  <text x="343" y="755" class="label">maps entity → DTO</text>
+  <text x="700" y="755" class="label">returns</text>
+  <text x="1100" y="755" class="label">serializes</text>
+
+  <!-- DI and test callouts -->
+  <rect x="70" y="915" width="670" height="115" class="box service"/>
+  <text x="92" y="947" class="box-title">Dependency injection — Program.cs</text>
+  <text x="92" y="976" class="box-text">AddDbContext&lt;AppDbContext&gt;()  → scoped per HTTP request</text>
+  <text x="92" y="1002" class="box-text">IUserProfileRepository → UserProfileRepository   |   IUserProfileService → UserProfileService</text>
+  <path d="M740 970 C850 970, 900 750, 1070 580" class="dependency"/>
+
+  <rect x="860" y="915" width="660" height="115" class="box testing"/>
+  <text x="882" y="947" class="box-title">Service unit test — Moq</text>
+  <text x="882" y="976" class="box-text">UserProfileServiceTests mocks IUserProfileRepository</text>
+  <text x="882" y="1002" class="box-text">Tests mapping and service behavior without EF Core, DbContext, or a database.</text>
+  <path d="M1120 915 C1120 820, 1090 590, 1100 345" class="dependency"/>
+
+  <rect x="70" y="1045" width="14" height="14" fill="#e6f6ff" stroke="#1687c5"/><text x="92" y="1057" class="small">request / API boundary</text>
+  <rect x="270" y="1045" width="14" height="14" fill="#f3e8ff" stroke="#8b5cf6"/><text x="292" y="1057" class="small">application logic</text>
+  <rect x="450" y="1045" width="14" height="14" fill="#e8f8ef" stroke="#22a06b"/><text x="472" y="1057" class="small">data access</text>
+  <rect x="620" y="1045" width="14" height="14" fill="#fff3d6" stroke="#d98f00"/><text x="642" y="1057" class="small">response</text>
+  <rect x="760" y="1045" width="14" height="14" fill="#fff0f3" stroke="#d84a70"/><text x="782" y="1057" class="small">test boundary</text>
+</svg>
