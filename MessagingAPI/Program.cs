@@ -1,4 +1,5 @@
 using MessagingAPI.Data;
+using MessagingAPI.Services;
 using Microsoft.EntityFrameworkCore;
 using ReviewAPI.Data;
 using ReviewAPI.Repositories;
@@ -20,6 +21,7 @@ builder.Services.AddOpenApi();
 // Register application services and data repositories.
 builder.Services.AddScoped<IUserProfileRepository, UserProfileRepository>();
 builder.Services.AddScoped<IUserProfileService, UserProfileService>();
+builder.Services.AddScoped<ICalculatorService, CalculatorService>();
 
 var app = builder.Build();
 
