@@ -3,28 +3,35 @@ using Moq;
 using ReviewAPI.Repositories;
 using ReviewAPI.Services;
 
-namespace MessagingTests;
-
-public class UserProfileServiceTests
+namespace MessagingTests
 {
-    [Fact]
-    public async Task GetUserProfileByIdAsync_returns_profile_from_repository()
+    public class UserProfileServiceTests
     {
-        // Arrange: create a mock repository and define the result it should return
-        // when the service requests the profile with ID 1.
-        var repository = new Mock<IUserProfileRepository>();
-        repository
-            .Setup(repo => repo.GetUserProfileByIdAsync(1))
-            .ReturnsAsync(new UserProfile { Id = 1, UserName = "Ada" });
+        private readonly Mock<IUserProfileRepository> repository;
+        private readonly UserProfileService service;
 
-        var service = new UserProfileService(repository.Object);
+        public UserProfileServiceTests()
+        {
+            // create a mock repository 
+            repository = new Mock<IUserProfileRepository>();
+            service = new UserProfileService(repository.Object);
+        }
 
-        // Act: call the service method being tested.
-        var result = await service.GetUserProfileByIdAsync(1);
+        [Fact]
+        public async Task GetUserProfileByIdAsync()
+        {
+            // Arrange: Define the repository call the mock should recognize and what sholud be 
+            // returned when the service requests the UserProfile 1
+            repository.Setup(repo => repo.GetUserProfileByIdAsync(1))
+                      .ReturnsAsync(new UserProfile { Id = 1, UserName = "Ada" });
 
-        // Assert: verify that the service returns the repository data as a DTO.
-        Assert.NotNull(result);
-        Assert.Equal(1, result.Id);
-        Assert.Equal("Ada", result.UserName);
+            // Act
+            var result = await service.GetUserProfileByIdAsync(1);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(1, result.Id);
+            Assert.Equal("Ada", result.UserName);
+        }
     }
 }
