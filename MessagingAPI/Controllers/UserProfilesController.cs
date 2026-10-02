@@ -12,6 +12,13 @@ namespace ReviewAPI.Controllers
     [Route("api/[controller]")]
     public class UserProfilesController(IUserProfileService profileService) : ControllerBase
     {
+        // private readonly IUserProfileService profileService;
+
+        // public UserProfilesController(IUserProfileService profileService)
+        // {
+        //     this.profileService = profileService;
+        // }
+
         // Get request 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserProfileDto>>> Get()
